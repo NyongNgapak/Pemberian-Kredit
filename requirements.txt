@@ -2,3 +2,4 @@ streamlit
 numpy==1.26.4
 scipy==1.11.4
 scikit-fuzzy==0.4.2
+matplotlib
