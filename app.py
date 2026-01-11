@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import matplotlib.pyplot as plt
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 
@@ -147,3 +148,4 @@ if st.button("Proses Kredit"):
         st.warning("⚠️ Kredit Dipertimbangkan")
     else:
         st.error("❌ Kredit Tidak Layak")
+
