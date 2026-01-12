@@ -62,22 +62,22 @@ rules = [
     ctrl.Rule(status['rendah'], kelayakan['tidak_layak']),
     ctrl.Rule(jaminan['buruk'], kelayakan['tidak_layak']),
     ctrl.Rule(lama['rendah'], kelayakan['tidak_layak']),
+    ctrl.Rule(gaji['rendah'], kelayakan['tidak_layak']),
     ctrl.Rule(dbr['tinggi'], kelayakan['tidak_layak']),
 
     ctrl.Rule(
-        status['tinggi'] & lama['tinggi'] & gaji['tinggi']
-        & jaminan['sedang'] & pinjaman['rendah'],
+        gaji['tinggi'] & jaminan['baik'] & pinjaman['rendah'],
         kelayakan['layak']
     ),
 
     ctrl.Rule(
-        status['sedang'] & gaji['sedang'] & pinjaman['sedang'],
+        status['sedang'] & gaji['sedang'] & jaminan['sedang'],
         kelayakan['dipertimbangkan']
     ),
 
     # ✅ RULE PENJAGA (WAJIB ADA)
     ctrl.Rule(
-        status['rendah'] | status['sedang'] | status['tinggi'],
+        status['rendah'] | status['sedang'],
         kelayakan['dipertimbangkan']
     )
 ]
@@ -98,7 +98,7 @@ jaminan_val = st.selectbox("Jenis Jaminan", ["Tidak Ada", "BPKB", "SHM"])
 # Variabel Pinjaman (tambahan untuk perhitungan DBR)
 pinjaman_val = st.slider("Pinjaman Diajukan (juta)", 10, 80, 20)
 status_map = {"Part-time": 2, "Kontrak": 5, "Tetap": 8}
-jaminan_map = {"Tidak Ada": 2, "BPKB": 5, "SHM": 8}
+jaminan_map = {"Tidak Ada": 2, "BPKB": 5, "SHM": 10}
 
 # =========================
 # 5. HITUNG DBR OTOMATIS
